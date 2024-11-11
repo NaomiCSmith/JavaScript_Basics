@@ -5,3 +5,9 @@ const sayHello = () => {
 };
 
 module.exports = sayHello;
+
+const sayHello2 = (name) => {
+    return 'Hello, ' + name;
+};
+
+module.exports = sayHello2;
