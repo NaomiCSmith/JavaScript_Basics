@@ -6,15 +6,23 @@
 // 'Hi Laura! 50% off our best candies for you today!', and so on.
 
 
-const customerNames = [
-    'Buttercup',
-    'Bubbles',
-    'Blossom'
-];
+const customers = {
+    'Buttercup': {
+        discount: 40,
+    },
+    'Bubbles': {
+        discount: 50,
+    },
+    'Blossom': {
+        discount: 60,
+    },
+};
 
-const generateMessages = (customerNames) => {
-    return customerNames.map((names) => (`Hi ${names}! 50% off our best candies for you today!`));
-}
+const generateMessages = (customers) => {
+    return Object.entries(customers).map(([names, properties]) => {
+        return `Hi ${names}! ${properties.discount}% off our best candies for you today!`;
+        });
+};
 
-const messages = generateMessages(customerNames);
+const messages = generateMessages(customers);
 console.log(messages);
