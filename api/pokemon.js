@@ -9,12 +9,40 @@
 // Once the fetch has completed, then convert the response to JSON
 // Once the response is converted to JSON, then log out the data.
 
+
+// Instead of console.loging the Pokémon data, we instead use it to create and return a new object, containing the following fields:
+// name, the name of the Pokémon
+// id, the id number of the Pokémon
+// height
+// weight
+// (Bonus) types, what types the Pokémon is. This should be an array, such as ['electric'] or ['fire', flying']
+
+
 const fetchPokemon = (pokemon) => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`).then((response) => {
+    return fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+    .then(response => {
+        if(!response.ok) {
+            throw new Error(`Error fetching Pokemon: ${response.status}`);
+        }
         return response.json();
-    }).then((data) => {
-        console.log(data);
+    })
+    .then(data => {
+        return {
+            name: data.name,
+            id: data.id,
+            height: data.height,
+            weight: data.weight,
+        };
     });
 } 
+
+(async () => {
+    try {
+        const pokemon = await fetchPokemon('venusaur');
+        console.log(pokemon);
+    } catch (error) {
+        console.error(error.message);
+    }
+})();
 
 module.exports = fetchPokemon;
