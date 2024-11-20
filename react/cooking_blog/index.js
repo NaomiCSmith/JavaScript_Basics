@@ -21,3 +21,24 @@ stepThreeEl.innerText = "Eat and enjoy!";
 recipeListEl.appendChild(stepThreeEl);
 
 body.appendChild(recipeListEl); // Add the recipe list onto the body of the page
+
+
+
+// alternative route according to DRY principles:
+
+// const body = document.querySelector("body");
+
+// const addRecipe = (title, steps) => {
+//     const recipeTitleEl = document.createElement("p");
+//     recipeTitleEl.innerText = title;
+//     body.appendChild(recipeTitleEl);
+
+
+//     const recipeListEl = document.createElement("ol");
+//     steps.map((step) => {
+//         const stepEl = document.createElement("li");
+//         stepEl.innerText = step;
+//         recipeListEl.appendChild(stepEl);
+//     });
+//     body.appendChild(recipeListEl);
+// };
