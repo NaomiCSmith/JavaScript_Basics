@@ -1,3 +1,8 @@
 // file: index.js
 
-console.log("Hello from JavaScript");
+const message = (message) => {
+    alert(message);
+};
+
+message("Hello world from JavaScript");
+
