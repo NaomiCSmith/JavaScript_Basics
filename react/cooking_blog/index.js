@@ -26,19 +26,38 @@ body.appendChild(recipeListEl); // Add the recipe list onto the body of the page
 
 // alternative route according to DRY principles:
 
-// const body = document.querySelector("body");
-
-// const addRecipe = (title, steps) => {
-//     const recipeTitleEl = document.createElement("p");
-//     recipeTitleEl.innerText = title;
-//     body.appendChild(recipeTitleEl);
+const addRecipe = (title, steps) => {
+    const recipeTitleEl = document.createElement("p");
+    recipeTitleEl.innerText = title;
+    body.appendChild(recipeTitleEl);
 
 
-//     const recipeListEl = document.createElement("ol");
-//     steps.map((step) => {
-//         const stepEl = document.createElement("li");
-//         stepEl.innerText = step;
-//         recipeListEl.appendChild(stepEl);
-//     });
-//     body.appendChild(recipeListEl);
-// };
+    const recipeListEl = document.createElement("ol");
+    steps.map((step) => {
+        const stepEl = document.createElement("li");
+        stepEl.innerText = step;
+        recipeListEl.appendChild(stepEl);
+    });
+    body.appendChild(recipeListEl);
+};
+
+
+// add a joke to make the food taste better:
+
+const getJoke = () => {
+    return fetch(`https://official-joke-api.appspot.com/random_joke`)
+    .then((response) => {
+        return response.json();
+    })
+    .then((joke) => {
+        const jokeSetUpEl = document.createElement("p");
+        jokeSetUpEl.innerText = `${joke.setup}`;
+        body.append(jokeSetUpEl);
+
+        const jokePunchLineEl = document.createElement("p");
+        jokePunchLineEl.innerText = `${joke.punchline}`;
+        body.append(jokePunchLineEl);
+    });
+};
+
+getJoke()
