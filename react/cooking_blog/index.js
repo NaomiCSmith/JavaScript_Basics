@@ -61,3 +61,19 @@ const getJoke = () => {
 };
 
 getJoke()
+
+
+// add event listener to TODO button
+
+const buttonEl = document.querySelector("#TODO");
+buttonEl.addEventListener("click", () => {
+    return fetch("https://jsonplaceholder.typicode.com/todos/1")
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        const todoEl = document.createElement("p");
+        todoEl.innerText = `TODO: ${data.title} (Completed: ${data.completed})`;
+        body.appendChild(todoEl);
+    });
+});
